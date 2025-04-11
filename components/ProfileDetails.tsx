@@ -77,7 +77,7 @@ export default function ProfileDetails() {
                                     style={{ ...styles.collection_image, height: 134 }}
                                 />
                                 <Image
-                                    source={require('../assets/images/posts/6.jpeg')}
+                                    source={require('../assets/images/posts/6.jpg')}
                                     style={{ ...styles.collection_image, height: 134 }}
                                 />
                             </View>
@@ -97,7 +97,7 @@ export default function ProfileDetails() {
                             <View style={styles.collection_images}>
                                 <View>
                                     <Image
-                                        source={require('../assets/images/posts/7.jpeg')}
+                                        source={require('../assets/images/posts/7.jpg')}
                                         style={styles.collection_image}
                                     />
                                     <Image
@@ -122,7 +122,7 @@ export default function ProfileDetails() {
                         <View style={{ ...styles.designerElement, width: 120, backgroundColor: '#ffffff10' }}></View>
                     </View>
                 </ThemedView>
-                : <ThemedView key="manageTagsGradient" colors={['#4c669f', '#3b5998']} style={{ paddingTop: 4, backgroundColor: '#191B21' }}>
+                : <ThemedView key="manageTagsGradient" style={{ paddingTop: 4, backgroundColor: '#191B21' }}>
                     <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc' }}>
                         our recommendations work best when you let us know these things:
                     </ThemedText>

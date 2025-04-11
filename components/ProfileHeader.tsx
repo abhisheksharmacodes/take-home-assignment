@@ -7,8 +7,8 @@ export default function ProfileHeader({ translateX }: { translateX: Animated.Val
     return (
         <ThemedView style={{ flex: 1, padding: 20, paddingTop: 30 }}>
             <Animated.Image
-                source={require('../assets/images/background.jpg')}
-                style={{ height: 450, position: 'absolute', top: 0, left: 0, opacity: .6, transform: [{ translateX: translateX }] }}
+                source={require('../assets/images/background.png')}
+                style={{ height: 500, position: 'absolute', top: 0, left: 0, opacity: .6, transform: [{ translateX: translateX }] }}
             />
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginTop: 24 }}>
                 <View style={{ shadowColor: '#EFD84C', shadowOpacity: 1, shadowRadius: 10, elevation: 5 }}>

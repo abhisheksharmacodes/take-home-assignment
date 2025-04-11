@@ -12,13 +12,13 @@ export default function HomeScreen() {
     Animated.loop(
       Animated.sequence([
         Animated.timing(translateX, {
-          toValue: -1000,
-          duration: 30000,
+          toValue: -150,
+          duration: 10000,
           useNativeDriver: true,
         }),
         Animated.timing(translateX, {
           toValue: 0,
-          duration: 30000,
+          duration: 10000,
           useNativeDriver: true,
         }),
       ])
@@ -43,7 +43,7 @@ export default function HomeScreen() {
         />
         <Image
           source={require('../../assets/images/footer_design.png')}
-          style={{ height: 40, width: 360, borderRadius: 4, zIndex: 1, position: 'absolute', bottom: 0, left: 0, shadowColor: '#EFD84C', shadowOpacity: 1, shadowOffset: { height: 10, width: 10 }, shadowRadius: 10 }}
+          style={{ height: 40, width: 360, zIndex: 1, position: 'absolute', bottom: 0, left: 0 }}
         />
       </ThemedView>
     </ScrollView>
