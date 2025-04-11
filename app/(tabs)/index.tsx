@@ -1,14 +1,11 @@
-import { Image, StyleSheet, ImageBackground, View, Text, Animated, ScrollView } from 'react-native';
+import { Image, StyleSheet, View, Text, Animated, ScrollView, ImageBackground } from 'react-native';
 
-const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
 import React, { useState, useRef, useEffect } from 'react';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 
 import * as Font from 'expo-font';
-
-
 
 export default function HomeScreen() {
   const translateX = useRef(new Animated.Value(0)).current;
@@ -18,6 +15,8 @@ export default function HomeScreen() {
     async function loadFonts() {
       await Font.loadAsync({
         'CooperHewitt-Medium': require('../../assets/fonts/CooperHewitt-Medium.otf'),
+        'CircularStd-Book': require('../../assets/fonts/CircularStd-Book.otf'),
+        'CircularStd-Light': require('../../assets/fonts/CircularStd-Light.otf'),
       });
     }
     loadFonts();
@@ -28,12 +27,12 @@ export default function HomeScreen() {
       Animated.sequence([
         Animated.timing(translateX, {
           toValue: -1000,
-          duration: 40000,
+          duration: 30000,
           useNativeDriver: true,
         }),
         Animated.timing(translateX, {
           toValue: 0,
-          duration: 40000,
+          duration: 30000,
           useNativeDriver: true,
         }),
       ])
@@ -43,24 +42,26 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <ThemedView style={{ flex: 1, padding: 20, paddingTop: 30, }}>
+      <ThemedView style={{ flex: 1, padding: 20, paddingTop: 30 }}>
         <Animated.Image
           source={require('../../assets/images/background.jpg')}
-
-          style={{ position: 'absolute', top: 0, left: 0, opacity: .6, transform: [{ translateX: translateX }] }}
+          style={{ height: 450, position: 'absolute', top: 0, left: 0, opacity: .6, transform: [{ translateX: translateX }] }}
         />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginTop: 24 }}>
-          <View>
+          <View style={{ shadowColor: '#EFD84C', shadowOpacity: 1, shadowRadius: 10, elevation: 5 }}>
             <Image
-              source={require('../../assets/images/profile.webp')}
-              style={{ width: 100, height: 100, borderRadius: 4 }}
+              source={require('../../assets/images/profile.png')}
+              style={{ width: 96, height: 96, borderRadius: 4, zIndex: 0 }}
+            />
+            <Image
+              source={require('../../assets/images/frame.png')}
+              style={{ width: 101, height: 100, borderRadius: 4, zIndex: 1, position: 'absolute', top: 0, left: 0, shadowColor: '#EFD84C', shadowOpacity: 1, shadowOffset: { height: 10, width: 10 }, shadowRadius: 10 }}
             />
           </View>
-
           <View style={{ flexDirection: 'row', gap: 26 }}>
             <Image
               source={require('../../assets/images/share-icon.png')}
-              style={{ width: 24, height: 24 }}
+              style={{ width: 22, height: 24 }}
             />
             <Image
               source={require('../../assets/images/setting.png')}
@@ -70,34 +71,34 @@ export default function HomeScreen() {
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <View style={{ flexDirection: 'column', width: '100%', alignItems: 'center', gap: 16, marginTop: 16 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%' }}>
-              <View>
-                <View style={{ flexDirection: 'row', gap: 7, alignItems: 'center', justifyContent: 'space-evenly' }}>
-                  <ThemedText style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }}>
+            <View style={{ flexDirection: 'column', width: '100%' }}>
+              <View style={{ flexDirection: 'row', gap: 7, alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+                  <ThemedText style={{ fontSize: 20, color: '#fff', fontFamily: 'CircularStd-Book' }}>
                     @theo_from_hsr
                   </ThemedText>
                   <Image
                     source={require('../../assets/images/tick.png')}
-                    style={{ width: 18, height: 18 }}
+                    style={{ width: 23, height: 23 }}
                   />
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                <View style={{ borderStyle: 'dashed', borderBottomColor: '#ffffff95', margin: 0, paddingBottom: 3, borderBottomWidth: 1, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Text style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 13, color: '#ffffff95' }}>EDIT PROFILE</Text>
                   <Image
-                    source={require('../../assets/images/in.png')}
-                    style={{ width: 18, height: 12, marginRight: 7 }}
+                    source={require('../../assets/images/edit.png')}
+                    style={{ width: 12, height: 12, opacity: .5 }}
                   />
-                  <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', fontSize: 13, letterSpacing: 1, color: '#ffffffdd' }}>INDIA</ThemedText>
                 </View>
               </View>
-              <View style={{ borderStyle: 'dashed', borderBottomColor: 'grey', margin: 0, paddingBottom: 5, borderBottomWidth: 2, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Text style={{ fontFamily: 'CooperHewitt-Medium', fontSize: 13, color: '#ffffff90' }}>EDIT PROFILE</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                 <Image
-                  source={require('../../assets/images/edit.png')}
-                  style={{ width: 12, height: 12, opacity: .5 }}
+                  source={require('../../assets/images/in.png')}
+                  style={{ width: 18, height: 12, marginRight: 7 }}
                 />
+                <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', fontSize: 13, letterSpacing: 1, color: '#ffffffdd' }}>INDIA</ThemedText>
               </View>
             </View>
-            <ThemedText style={{ fontSize: 16, width: '100%', color: '#ffffffdd' }}>
+            <ThemedText style={{ fontSize: 16, width: '100%', color: '#ffffffdd', fontFamily: 'CircularStd-Light' }}>
               18 y/o with high ambitions. want to build cool stuff!
             </ThemedText>
           </View>
@@ -113,10 +114,10 @@ export default function HomeScreen() {
           </View>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'space-between', marginTop: 24 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', gap: 4 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', gap: 8 }}>
             <Image
               source={require('../../assets/images/user.png')}
-              style={{ width: 16, height: 16 }}
+              style={{ width: 20, height: 20 }}
             />
             <ThemedText style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>2</ThemedText>
           </View>
@@ -131,7 +132,7 @@ export default function HomeScreen() {
           >
             <Image
               source={tabIndex === 1 ? require('../../assets/images/collections1.png') : require('../../assets/images/collections2.png')}
-              style={{ width: 18, height: 18, opacity: tabIndex === 1 ? 1 : 0.5 }}
+              style={{ width: 22, height: 22 }}
             />
             <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 14, color: tabIndex === 1 ? '#00e68e' : '#ffffff80' }}>COLLECTIONS</ThemedText>
           </ThemedView>
@@ -141,9 +142,9 @@ export default function HomeScreen() {
           >
             <Image
               source={tabIndex === 2 ? require('../../assets/images/target2.png') : require('../../assets/images/target1.png')}
-              style={{ width: 18, height: 18, opacity: tabIndex === 2 ? 1 : 0.5 }}
+              style={{ width: 22, height: 22 }}
             />
-            <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', fontSize: 14, color: tabIndex === 2 ? '#00e68e' : '#ffffff80' }}>MANAGE TAGS</ThemedText>
+            <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 14, color: tabIndex === 2 ? '#00e68e' : '#ffffff80' }}>MANAGE TAGS</ThemedText>
           </ThemedView>
         </ThemedView>
         {tabIndex === 1 ?
@@ -177,9 +178,9 @@ export default function HomeScreen() {
                 <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginVertical: 12, paddingLeft: 14 }}>
                   <Image
                     source={require('../../assets/images/like.png')}
-                    style={{ width: 18, height: 16, opacity: 0.5 }}
+                    style={{ width: 18, height: 16 }}
                   />
-                  <ThemedText style={{ fontSize: 14, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>LIKED (32)</ThemedText>
+                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>LIKED (32)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
@@ -200,9 +201,9 @@ export default function HomeScreen() {
                 <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginVertical: 12, paddingLeft: 14 }}>
                   <Image
                     source={require('../../assets/images/save.png')}
-                    style={{ width: 14, height: 20, opacity: 0.5 }}
+                    style={{ width: 14, height: 22 }}
                   />
-                  <ThemedText style={{ fontSize: 14, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>SAVED (23)</ThemedText>
+                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>SAVED (23)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
@@ -229,9 +230,9 @@ export default function HomeScreen() {
                 <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginVertical: 12, paddingLeft: 14 }}>
                   <Image
                     source={require('../../assets/images/folder.png')}
-                    style={{ width: 18, height: 16, opacity: 0.5 }}
+                    style={{ width: 18, height: 16 }}
                   />
-                  <ThemedText style={{ fontSize: 14, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>FILES (3)</ThemedText>
+                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>FILES (3)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
@@ -239,7 +240,7 @@ export default function HomeScreen() {
             </View>
           </ThemedView>
           : <ThemedView style={{ paddingTop: 4 }}>
-            <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc' }}>
+            <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc', fontFamily: 'CircularStd-Light' }}>
               our recommendations work best when you let us know these things:
             </ThemedText>
             {[
@@ -258,22 +259,27 @@ export default function HomeScreen() {
                   </View>
                   <ThemedText style={{ fontSize: 14, color: '#ccc', marginTop: 0, opacity: .7 }}>{item.description}</ThemedText>
                 </View>
-                <Image
-                  source={tabIndex === 1 ? require('../../assets/images/arrow.png') : require('../../assets/images/collections2.png')}
-                  style={{ width: 18, height: 18, opacity: tabIndex === 1 ? 1 : 0.5 }}
-                />
+                <View style={styles.arrow}></View>
               </View>
             ))}
           </ThemedView>}
       </ThemedView>
-      <ThemedView style={{ backgroundColor: '#0C0C0C', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 12 }}>
+      <ThemedView style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 12 }}>
         <Image
           source={require('../../assets/images/logo.png')}
           style={{ height: 36, width: 150 }}
         />
-        <ThemedText style={{ fontSize: 12, color: '#ffffff80' }}>
+        <ThemedText style={{ fontSize: 10, color: '#ffffff80', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>
           JOINED 2242 DAYS AGO
         </ThemedText>
+        <Image
+          source={require('../../assets/images/footer.png')}
+          style={{ height: 80, width: 360, position: "absolute", opacity: .2 }}
+        />
+        <Image
+          source={require('../../assets/images/footer_design.png')}
+          style={{ height: 40, width: 360, borderRadius: 4, zIndex: 1, position: 'absolute', bottom: 2, left: 0, shadowColor: '#EFD84C', shadowOpacity: 1, shadowOffset: { height: 10, width: 10 }, shadowRadius: 10 }}
+        />
       </ThemedView>
     </ScrollView >
   )
@@ -305,7 +311,7 @@ const styles = StyleSheet.create({
     height: 10,
     borderTopWidth: 2,
     borderRightWidth: 2,
-    borderColor: '#ffffff70',
+    borderColor: '#808080',
     transform: [{ rotate: '45deg' }],
     marginLeft: 'auto',
     backgroundColor: 'transparent'
