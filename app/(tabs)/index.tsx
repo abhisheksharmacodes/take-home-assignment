@@ -1,26 +1,13 @@
 import { Image, StyleSheet, View, Text, Animated, ScrollView, ImageBackground } from 'react-native';
 
 import React, { useState, useRef, useEffect } from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-
-
-import * as Font from 'expo-font';
 
 export default function HomeScreen() {
   const translateX = useRef(new Animated.Value(0)).current;
   const [tabIndex, setTabIndex] = useState(1);
-
-  useEffect(() => {
-    async function loadFonts() {
-      await Font.loadAsync({
-        'CooperHewitt-Medium': require('../../assets/fonts/CooperHewitt-Medium.otf'),
-        'CircularStd-Book': require('../../assets/fonts/CircularStd-Book.otf'),
-        'CircularStd-Light': require('../../assets/fonts/CircularStd-Light.otf'),
-      });
-    }
-    loadFonts();
-  }, []);
 
   useEffect(() => {
     Animated.loop(
@@ -74,7 +61,7 @@ export default function HomeScreen() {
             <View style={{ flexDirection: 'column', width: '100%' }}>
               <View style={{ flexDirection: 'row', gap: 7, alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                 <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-                  <ThemedText style={{ fontSize: 20, color: '#fff', fontFamily: 'CircularStd-Book' }}>
+                  <ThemedText type='defaultSemiBold' style={{ fontSize: 20, color: '#fff' }}>
                     @theo_from_hsr
                   </ThemedText>
                   <Image
@@ -83,7 +70,7 @@ export default function HomeScreen() {
                   />
                 </View>
                 <View style={{ borderStyle: 'dashed', borderBottomColor: '#ffffff95', margin: 0, paddingBottom: 3, borderBottomWidth: 1, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Text style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 13, color: '#ffffff95' }}>EDIT PROFILE</Text>
+                  <ThemedText type='subtitle' style={{ letterSpacing: 1, fontSize: 13, color: '#ffffff95' }}>EDIT PROFILE</ThemedText>
                   <Image
                     source={require('../../assets/images/edit.png')}
                     style={{ width: 12, height: 12, opacity: .5 }}
@@ -95,10 +82,10 @@ export default function HomeScreen() {
                   source={require('../../assets/images/in.png')}
                   style={{ width: 18, height: 12, marginRight: 7 }}
                 />
-                <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', fontSize: 13, letterSpacing: 1, color: '#ffffffdd' }}>INDIA</ThemedText>
+                <ThemedText type='subtitle' style={{ fontSize: 13, letterSpacing: 1, color: '#ffffffdd' }}>INDIA</ThemedText>
               </View>
             </View>
-            <ThemedText style={{ fontSize: 16, width: '100%', color: '#ffffffdd', fontFamily: 'CircularStd-Light' }}>
+            <ThemedText style={{ fontSize: 16, width: '100%', color: '#ffffffdd' }}>
               18 y/o with high ambitions. want to build cool stuff!
             </ThemedText>
           </View>
@@ -121,7 +108,7 @@ export default function HomeScreen() {
             />
             <ThemedText style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>2</ThemedText>
           </View>
-          <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 12, color: '#ccc' }}>FOLLOWING</ThemedText>
+          <ThemedText type='subtitle' style={{ letterSpacing: 1, fontSize: 12, color: '#ccc', marginTop:5 }}>FOLLOWING</ThemedText>
         </View>
       </ThemedView>
       <ThemedView style={{ flex: 1 }}>
@@ -134,7 +121,7 @@ export default function HomeScreen() {
               source={tabIndex === 1 ? require('../../assets/images/collections1.png') : require('../../assets/images/collections2.png')}
               style={{ width: 22, height: 22 }}
             />
-            <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 14, color: tabIndex === 1 ? '#00e68e' : '#ffffff80' }}>COLLECTIONS</ThemedText>
+            <ThemedText type='subtitle' style={{ letterSpacing: 1, fontSize: 14, color: tabIndex === 1 ? '#00e68e' : '#ffffff80' }}>COLLECTIONS</ThemedText>
           </ThemedView>
           <ThemedView
             style={{ ...styles.tab, borderBottomWidth: tabIndex === 2 ? 2 : 1, borderBottomColor: tabIndex === 2 ? '#00e68e' : '#444' }}
@@ -144,11 +131,11 @@ export default function HomeScreen() {
               source={tabIndex === 2 ? require('../../assets/images/target2.png') : require('../../assets/images/target1.png')}
               style={{ width: 22, height: 22 }}
             />
-            <ThemedText style={{ fontFamily: 'CooperHewitt-Medium', letterSpacing: 1, fontSize: 14, color: tabIndex === 2 ? '#00e68e' : '#ffffff80' }}>MANAGE TAGS</ThemedText>
+            <ThemedText type='subtitle' style={{ letterSpacing: 1, fontSize: 14, color: tabIndex === 2 ? '#00e68e' : '#ffffff80' }}>MANAGE TAGS</ThemedText>
           </ThemedView>
         </ThemedView>
         {tabIndex === 1 ?
-          <ThemedView style={{ paddingHorizontal: 18, paddingVertical: 26, flexDirection: 'row', flexWrap: 'wrap', gap: 18 }}>
+          <ThemedView key="collectionsGradient" style={{ paddingHorizontal: 18, paddingVertical: 26, flexDirection: 'row', flexWrap: 'wrap', gap: 18, backgroundColor:'lin#191B21' }}>
             <View style={styles.container}>
               <View style={styles.collection}>
                 <View>
@@ -180,7 +167,7 @@ export default function HomeScreen() {
                     source={require('../../assets/images/like.png')}
                     style={{ width: 18, height: 16 }}
                   />
-                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>LIKED (32)</ThemedText>
+                  <ThemedText type='subtitle' style={{ fontSize: 13, color: '#ffffffaa', letterSpacing: 1 }}>LIKED (32)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
@@ -203,7 +190,7 @@ export default function HomeScreen() {
                     source={require('../../assets/images/save.png')}
                     style={{ width: 14, height: 22 }}
                   />
-                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>SAVED (23)</ThemedText>
+                  <ThemedText type='subtitle' style={{ fontSize: 13, color: '#ffffffaa', letterSpacing: 1 }}>SAVED (23)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
@@ -232,15 +219,15 @@ export default function HomeScreen() {
                     source={require('../../assets/images/folder.png')}
                     style={{ width: 18, height: 16 }}
                   />
-                  <ThemedText style={{ fontSize: 13, color: '#ffffffaa', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>FILES (3)</ThemedText>
+                  <ThemedText type='subtitle' style={{ fontSize: 13, color: '#ffffffaa', letterSpacing: 1 }}>FILES (3)</ThemedText>
                 </View>
               </View>
               <View style={{ ...styles.designerElement, width: 140, backgroundColor: '#ffffff15' }}></View>
               <View style={{ ...styles.designerElement, width: 120, backgroundColor: '#ffffff10' }}></View>
             </View>
           </ThemedView>
-          : <ThemedView style={{ paddingTop: 4 }}>
-            <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc', fontFamily: 'CircularStd-Light' }}>
+          : <ThemedView key="manageTagsGradient" style={{ paddingTop: 4, backgroundColor:'#191B21' }}>
+            <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc' }}>
               our recommendations work best when you let us know these things:
             </ThemedText>
             {[
@@ -254,7 +241,7 @@ export default function HomeScreen() {
               >
                 <View>
                   <View style={{ flexDirection: 'row', gap: 8 }}>
-                    <ThemedText style={{ fontSize: 14, color: '#ffffffcc', opacity: .8, fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>{item.title}</ThemedText>
+                    <ThemedText type='subtitle' style={{ fontSize: 14, color: '#ffffffcc', opacity: .8, letterSpacing: 1, lineHeight:26 }}>{item.title}</ThemedText>
                     <ThemedText style={{ fontSize: 14, color: '#ffffff' }}>{item.icon}</ThemedText>
                   </View>
                   <ThemedText style={{ fontSize: 14, color: '#ccc', marginTop: 0, opacity: .7 }}>{item.description}</ThemedText>
@@ -269,7 +256,7 @@ export default function HomeScreen() {
           source={require('../../assets/images/logo.png')}
           style={{ height: 36, width: 150 }}
         />
-        <ThemedText style={{ fontSize: 10, color: '#ffffff80', fontFamily: 'CooperHewitt-Medium', letterSpacing: 1 }}>
+        <ThemedText type='subtitle' style={{ fontSize: 10, color: '#ffffff80', letterSpacing: 1 }}>
           JOINED 2242 DAYS AGO
         </ThemedText>
         <Image
