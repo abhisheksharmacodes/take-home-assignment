@@ -135,7 +135,7 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
         {tabIndex === 1 ?
-          <ThemedView key="collectionsGradient" style={{ paddingHorizontal: 18, paddingVertical: 26, flexDirection: 'row', flexWrap: 'wrap', gap: 18, backgroundColor:'lin#191B21' }}>
+          <ThemedView key="collectionsGradient" style={{ paddingHorizontal: 18, paddingVertical: 26, flexDirection: 'row', flexWrap: 'wrap', gap: 18, backgroundColor:'#191B21' }}>
             <View style={styles.container}>
               <View style={styles.collection}>
                 <View>
@@ -226,7 +226,7 @@ export default function HomeScreen() {
               <View style={{ ...styles.designerElement, width: 120, backgroundColor: '#ffffff10' }}></View>
             </View>
           </ThemedView>
-          : <ThemedView key="manageTagsGradient" style={{ paddingTop: 4, backgroundColor:'#191B21' }}>
+          : <ThemedView key="manageTagsGradient" colors={['#4c669f', '#3b5998']} style={{ paddingTop: 4, backgroundColor:'#191B21' }}>
             <ThemedText style={{ marginTop: 16, fontSize: 16, paddingHorizontal: 18, color: '#ffffffcc' }}>
               our recommendations work best when you let us know these things:
             </ThemedText>
